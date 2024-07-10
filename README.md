@@ -47,16 +47,36 @@ Deploy the contract using a script in the scripts folder:
 - Runtime Environment's members available in the global scope.
 - Hardhat always runs the compile task when running scripts with its command line interface.
 - If this script is run directly using `node` you may want to call compile manually to make sure everything is compiled await hre.run('compile');
-- We get the contract to deploy
-  ```
+
+```
 const hre = require("hardhat");
-
 async function main() {
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
-
-  await greeter.deployed();
-
-  console.log("Greeter deployed to:", greeter.address);
+const Greeter = await hre.ethers.getContractFactory("Greeter");
+const greeter = await Greeter.deploy("Hello, Hardhat!");
+await greeter.deployed();
+console.log("Greeter deployed to:", greeter.address);
 }
 ```
+
+
+## Deploy Project
+
+- Start the Hardhat local network:
+```
+npx hardhat node
+```
+- Deploy the smart contract to the local network:
+```
+npx hardhat run scripts/deploy.js --network localhost
+```
+- Start the React development server:
+```
+npm run start
+```
+- Open your browser and go to http://localhost:3000 to interact with the frontend.
+
+## Author
+Abhinav Singh
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
